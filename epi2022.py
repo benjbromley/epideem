@@ -5,7 +5,7 @@ import scipy.integrate as integrate
 import scipy.optimize as optimize
 from scipy.ndimage.filters import uniform_filter1d as ufilt1d
 import sys
-
+import getpass as gp
 
 state = "Utah"
 #state = "Idaho"
@@ -109,8 +109,8 @@ t0delta = sol.x[2]
 print('b,g fit:',sol.x,R0(*bgdelta))
 df['dmod'] += dcasesmodel(df.dday.to_numpy(),t0delta,Ndelta,*bgdelta)
 
-# add in omicron
-bgom = np.array([1.3*bgdelta[0],1.1*bgdelta[1]])
+# add in omicron, do not fit, just use delta and match
+bgom = np.array([1.25*bgdelta[0],1.1*bgdelta[1]])
 t0om = 0
 print('t index, date',df.index[-1],df.date[df.index[-1]])
 # find index at 2022-01-01:
@@ -170,7 +170,7 @@ ax.set_title(state+' ')
 ax.figure.savefig('tmp.png')
 
 # comment this out!?
-if 1:
+if gp.getuser() == 'bromley':
     import os
     os.system('convert tmp.png ~/www/tmp.jpg')
 
