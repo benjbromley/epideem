@@ -110,7 +110,7 @@ print('b,g fit:',sol.x,R0(*bgdelta))
 df['dmod'] += dcasesmodel(df.dday.to_numpy(),t0delta,Ndelta,*bgdelta)
 
 # add in omicron, do not fit, just use delta and match
-bgom = np.array([1.25*bgdelta[0],1.1*bgdelta[1]])
+bgom = np.array([1.3*bgdelta[0],1.1*bgdelta[1]])
 t0om = 0
 print('t index, date',df.index[-1],df.date[df.index[-1]])
 # find index at 2022-01-01:
